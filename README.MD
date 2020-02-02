@@ -2,7 +2,7 @@
 Modified auger() function, edge can be adjusted by changing the edgeMidPoint var from 0 to 1
 
 
-![screenshot](https://raw.githubusercontent.com/vijirams/OpenSCAD-Libs-by-William-Gibson/master/screenshot.png)
+![screenshot](screenshot.png)
 
 
 
