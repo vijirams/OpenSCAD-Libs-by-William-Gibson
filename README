@@ -1,5 +1,14 @@
+
+Modified auger() function, edge can be adjusted by changing the edgeMidPoint var from 0 to 1
+
+
+![alt text](screenshot.png.png "Logo Title Text 1")
+
+
+
+
 OpenSCAD Libraries
-© 2012 by William Gibson
+Â© 2012 by William Gibson
 All rights reserved, unless a library or dependency claims a license which prevents that.
 
 
@@ -8,3 +17,5 @@ http://www.openscad.org/
 
 If you want to use a library from this repo, please contact me at william.gibson.wg@gmail.com
 I would be happy to allow it, including for commercial use, so long as I am informed.
+
+
