@@ -1,9 +1,9 @@
 // Parametric Printable Auger
 // It is licensed under the Creative Commons - GNU GPL license.
-// © 2013 by William Gibson
+// Â© 2013 by William Gibson
 // http://www.thingiverse.com/thing:96462
 
-use <../utils/build_plate.scad>
+use <1build_plate.scad>
 
 
 
@@ -12,59 +12,78 @@ use <../utils/build_plate.scad>
 ////////////
 
 //Simple Example
-// auger(rShaft=1/8*inch, r=.75*inch, h=1*inch, 
-// turns=2, multiStart=1, flightThickness = 0.2, 
-// overhangAngle=20, supportThickness=0.0);
+/* auger(rShaft=1/8*inch, r=.75*inch, h=1*inch, 
+ turns=2, multiStart=1, flightThickness = 0.2, 
+ overhangAngle=20, supportThickness=0.0);
+/*
 
 //Multistart example
-// auger(rShaft=1/2*inch, r=2*inch, h=2*inch, 
-// turns=1, multiStart=3, flightThickness = 0.6, 
-// overhangAngle=20, supportThickness=0.0);
+/* auger(rShaft=1/2*inch, r=2*inch, h=2*inch, 
+ turns=1, multiStart=3, flightThickness = 0.6, 
+ overhangAngle=20, supportThickness=0.0);
+*/
 
 //Support example
-// auger(rShaft=1/2*inch, r=2*inch, h=2*inch, 
-// turns=2, multiStart=1, flightThickness = 0.6, 
-// overhangAngle=10, supportThickness=0.8);
+/* auger(rShaft=1/2*inch, r=2*inch, h=2*inch, 
+ turns=2, multiStart=1, flightThickness = 0.6, 
+ overhangAngle=10, supportThickness=0.8);
+*/
 
 //Pitch instead of turns example
-// auger(rShaft=1/2*inch, r=1*inch, h=2*inch, 
-// pitch=0.5*inch, multiStart=1, flightThickness = 0.6, 
-// overhangAngle=20, supportThickness=0);
+ /*auger(rShaft=1/2*inch, r=1*inch, h=2*inch, 
+ pitch=0.5*inch, multiStart=1, flightThickness = 0.6, 
+ overhangAngle=20, supportThickness=0);
+*/
 
 //Sloped auger example
-// auger(rShaft=5, r1=50, r2=10, h=40, 
-// turns=3, multiStart=1, flightThickness = 1, 
-// overhangAngle=20, supportThickness=0.0);
+/* auger(rShaft=5, r1=50, r2=10, h=40, 
+ turns=3, multiStart=1, flightThickness = 1, 
+ overhangAngle=20, supportThickness=0.0);
+*/
 
 //Truncated top Example
-// auger(rShaft=1/8*inch, r=.75*inch, h=1*inch, 
-// turns=2, multiStart=1, flightThickness = 0.2, 
-// overhangAngle=20, supportThickness=0.0,
-// truncateTop=true);
+/* auger(rShaft=1/8*inch, r=.75*inch, h=1*inch, 
+ turns=2, multiStart=1, flightThickness = 0.2, 
+ overhangAngle=20, supportThickness=0.0,
+ truncateTop=true);
+*/
 
-
-auger(rShaft=5, r1=30, r2=10, h=40, 
-turns=4, multiStart=1, flightThickness = 1, 
+translate([50,0,0])
+auger(rShaft=10, r1=30, r2=30, h=40, 
+turns=2, multiStart=1, flightThickness = 0.2, 
 overhangAngle=20, supportThickness=0.0,
-truncateTop=true);
+truncateTop=true,handedness="left"
+//,$fs=7
+//,$fa=1,$fs=5
 
+);
+
+translate([-50,0,0])
+auger2(rShaft=10, r1=30, r2=30, h=40, 
+turns=2, multiStart=1, flightThickness = 0.2, 
+overhangAngle=20, supportThickness=0.0,
+truncateTop=true,handedness="left",edgeMidPoint=0.5
+//,$fs=7
+//,$fa=1,$fs=5
+
+);
 
 
 //Multiple-piece auger example
-// assign(h1=50, h2=50, r1=50, r2=10, thick=1)
-// {
-	// auger(rShaft=5, r1=r1, r2=r2, h=h1, 
-	// pitch=40, multiStart=1, flightThickness = thick, 
-	// overhangAngle=20, supportThickness=0.0,
-	// truncateTop=true);
+/* assign(h1=50, h2=50, r1=50, r2=10, thick=1)
+ {
+	 auger(rShaft=5, r1=r1, r2=r2, h=h1, 
+	 pitch=40, multiStart=1, flightThickness = thick, 
+	 overhangAngle=20, supportThickness=0.0,
+	 truncateTop=true);
 	
-	// rotate([0,0,439.02]) //Copy from "Total turns in degrees" 
-	// translate([0,0,h1-0.1-thick])
-	// auger(rShaft=5, r1=r2, r2=r2, h=h2, 
-	// pitch=40, multiStart=1, flightThickness = thick, 
-	// overhangAngle=20, supportThickness=0.0, $fn=202,
-	// truncateTop=true);
-// }
+	 rotate([0,0,439.02]) //Copy from "Total turns in degrees" 
+	 translate([0,0,h1-0.1-thick])
+	 auger(rShaft=5, r1=r2, r2=r2, h=h2, 
+	 pitch=40, multiStart=1, flightThickness = thick, 
+	 overhangAngle=20, supportThickness=0.0, $fn=202,
+	 truncateTop=true);
+ }*/
 
 
 //////////////////////
@@ -141,6 +160,24 @@ $fa=12,
 $fs=2
 );
 
+*auger2(
+rShaft = Auger_shaft_radius,
+r1 = Auger_shaft_radius + Auger_flight_radius,
+r2 = Auger_shaft_radius + Auger_flight_radius - Auger_smaller_flight_radius_delta,
+h = Auger_flight_length,
+overhangAngle = Printer_overhang_capability,
+multiStart = Auger_num_flights,
+flightThickness = Auger_flight_thickness,
+turns = Auger_twist/360,
+pitch=0,
+supportThickness = Auger_perimeter_thickness,
+handedness=Auger_handedness,
+edgeMidPoint=1,
+//$fn=50,
+$fa=12,
+$fs=2
+);
+
 //////////////////////
 //Auger Library Code//
 //////////////////////
@@ -188,7 +225,7 @@ truncateTop=false)
 					{
 						
 						auger_not_truncated(rShaft=rShaft, r1=r1, r2=r2, h=h, turns=_turns, 
-						flightThickness=flightThickness, overhangAngle=overhangAngle, 
+						flightThickness=flightThickness, overhangAngle=overhangAngle,  
 						multiStart=multiStart, supportThickness=supportThickness,
 						handedness=handedness=="right"?1:-1);
 						
@@ -209,8 +246,65 @@ truncateTop=false)
 }
 
 
+module auger2(rShaft = 0.5*inch, r, r1=1*inch, r2=1*inch, h=1*inch, multiStart=1,
+turns=1, pitch=0,
+flightThickness = 0.2*mm, overhangAngle=20, supportThickness=0*mm,
+handedness="right" /*"left"*/,
+truncateTop=false,edgeMidPoint=1)
+{	
+	assign(r1 = r>0 ? r : (r1<r2?r2:r1), r2 = r > 0 ? r : (r2>r2?r1:r2))
+	{
+		assign(extraFlightBot = tan(overhangAngle)*(r1-rShaft), extraFlightTop = tan(overhangAngle)*(r2-rShaft)) // have to divide by edgeMidPoint to maintain acurate overhandAngles
+		{
+			assign(_turns = ((pitch>0?h/(pitch+flightThickness):turns)), extraHeightForTruncation=truncateTop?extraFlightTop+flightThickness:0)
+			{
+				if(pitch != 0)
+				{
+					echo("Pitch defined - ignoring turns parameter");
+					//Each 1 turn is a height of (pitch+flightThickness)
+					//A height of h will make x turns where x = h / (pitch+flightThickness)
+					
+				}
+				else
+				{
+					if(turns < 0)
+					{
+						echo("ERROR: Cannot handle negative turns. Use handedness='left' instead to reverse rotation.");
+					}
+				}
+				echo("Total turn in degrees = ", 360*_turns);
+				
+				assign(_turns = _turns*(h+extraHeightForTruncation)/h, h=h+extraHeightForTruncation, r2 = r2 - extraHeightForTruncation/h*(r1-r2))
+				{
+					//echo(r1, r2);
+					
+					
+					difference()
+					{
+						
+						auger_not_truncated(rShaft=rShaft, r1=r1, r2=r2, h=h, turns=_turns, 
+						flightThickness=flightThickness, overhangAngle=overhangAngle,  // have to divide by edgeMidPoint to maintain acurate overhandAngles
+						multiStart=multiStart, supportThickness=supportThickness,
+						handedness=handedness=="right"?1:-1,edgeMidPoint=edgeMidPoint);
+						
+						//Cut off bottom of auger so it's printable.
+						translate([0,0,-extraFlightBot])
+						cube([r1 * 3,r1 * 3,2*extraFlightBot], center=true);
+						
+						if(truncateTop)
+						{
+							translate([0,0,h])
+							cube([r1 * 3,r1 * 3,2*(extraFlightTop+flightThickness)], center=true);
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
-module auger_not_truncated(rShaft = 0.5*inch, r1=1*inch, r2=1*inch, h=1*inch, turns=1, flightThickness = 0.2*mm, overhangAngle=20, multiStart=1, supportThickness=0*mm, handedness=1)
+
+module auger_not_truncated(rShaft = 0.5*inch, r1=1*inch, r2=1*inch, h=1*inch, turns=1, flightThickness = 0.2*mm, overhangAngle=20, multiStart=1, supportThickness=0*mm, handedness=1,edgeMidPoint=1)
 {
 	//echo("rShaft", rShaft);
 	//echo(overhangAngle);
@@ -246,13 +340,13 @@ module auger_not_truncated(rShaft = 0.5*inch, r1=1*inch, r2=1*inch, h=1*inch, tu
 	for(start=[1:1:multiStart]) //render each flight
 	{
 		rotate([0,0,handedness*360*(start-1)/multiStart])
-		augerFlight(flightThickness=flightThickness, turns=turns, rHidden=(rShaft>6?rShaft-5:1), rShaft=rShaft, r1=r1, r2=r2, h=h, overhangAngle=overhangAngle, handedness=handedness);
+		augerFlight(flightThickness=flightThickness, turns=turns, rHidden=(rShaft>6?rShaft-5:1), rShaft=rShaft, r1=r1, r2=r2, h=h, overhangAngle=overhangAngle, handedness=handedness,edgeMidPoint=edgeMidPoint);
 		
 	} 
 }
 
 
-module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangAngle, handedness)
+module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangAngle, handedness,edgeMidPoint)
 {
 	//echo(r1, r2);
 	if($fs < 0.1)
@@ -283,6 +377,7 @@ module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangA
 		{
 			
 			for(step=[0:1:numSteps-1]) //For each step in a flight
+            //for(step=[20:1:20]) //For each step in a flight
 			{
 				assign(rBot=r1+(r2-r1)*(step+1)/numSteps, rTop=r1+(r2-r1)*step/numSteps)
 				{
@@ -293,10 +388,10 @@ module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangA
 							rotate([0,0,handedness*turns*step/numSteps*360])
 							translate([0,0,heightStep*step])
 							if(handedness==1)
-							augerPolyhedron(flightThickness=flightThickness, extraFlight=extraFlight, rHidden=rHidden, rShaft=rShaft, rBot=rBot, rTop=rTop, turns=turns, numSteps=numSteps, heightStep=heightStep);
+							augerPolyhedron(flightThickness=flightThickness, extraFlight=extraFlight, rHidden=rHidden, rShaft=rShaft, rBot=rBot, rTop=rTop, turns=turns, numSteps=numSteps, heightStep=heightStep,edgeMidPoint=edgeMidPoint);
 							else
 							mirror([1,0,0])
-							augerPolyhedron(flightThickness=flightThickness, extraFlight=extraFlight, rHidden=rHidden, rShaft=rShaft, rBot=rBot, rTop=rTop, turns=turns, numSteps=numSteps, heightStep=heightStep);
+							augerPolyhedron(flightThickness=flightThickness, extraFlight=extraFlight, rHidden=rHidden, rShaft=rShaft, rBot=rBot, rTop=rTop, turns=turns, numSteps=numSteps, heightStep=heightStep,edgeMidPoint=edgeMidPoint);
 							
 						}
 					} 
@@ -305,14 +400,14 @@ module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangA
 		}
 	}
 	
-	module augerPolyhedron(flightThickness, extraFlight, rHidden, rShaft, rTop, rBot, turns, numSteps, heightStep)
+	module augerPolyhedron(flightThickness, extraFlight, rHidden, rShaft, rTop, rBot, turns, numSteps, heightStep,edgeMidPoint)
 	{
 		//_1 is first angle, _2 is second angle
 		//_I is inside, _O is outside
 		
 		
 		assign(top_1_I=flightThickness+extraFlight, bot_1_I=0, 
-		top_1_O=flightThickness+extraFlight, bot_1_O=extraFlight, 
+		top_1_O=flightThickness+extraFlight*edgeMidPoint, bot_1_O=extraFlight*edgeMidPoint, 
 		degOverlap=0.1, 
 		rHiddenCorrection=(rShaft-rHidden)/(rBot-rShaft)
 		)
@@ -371,11 +466,11 @@ module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangA
 		}
 	}
 	
-	module augerPolyhedronBackup(flightThickness, extraFlight, rShaft, r, turns, numSteps, heightStep)
+	module augerPolyhedronBackup(flightThickness, extraFlight, rShaft, r, turns, numSteps, heightStep,edgeMidPoint=1)
 	{
 		//_1 is first angle, _2 is second angle
 		//_I is inside, _O is outside
-		assign(top_1_I=flightThickness+extraFlight, bot_1_I=0, top_1_O=flightThickness+extraFlight, bot_1_O=extraFlight, degOverlap=0.1)
+		assign(top_1_I=flightThickness+extraFlight, bot_1_I=0, top_1_O=flightThickness+extraFlight*edgeMidPoint, bot_1_O=extraFlight*edgeMidPoint, degOverlap=0.1)
 		{		
 			polyhedron(
 			points=[
@@ -425,6 +520,3 @@ module augerFlight(flightThickness, turns, rHidden, rShaft, r1, r2, h, overhangA
 		}
 	}
 }
-
-
-
