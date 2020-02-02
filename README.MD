@@ -4,8 +4,6 @@ Modified auger() function, edge can be adjusted by changing the edgeMidPoint var
 
 ![screenshot](screenshot.png)
 
-
-
 OpenSCAD Libraries
 © 2012 by William Gibson
 All rights reserved, unless a library or dependency claims a license which prevents that.
